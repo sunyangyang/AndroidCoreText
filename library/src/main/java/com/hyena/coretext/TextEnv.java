@@ -235,13 +235,6 @@ public class TextEnv {
     private EditableValueChangeListener mListener = null;
     public void setEditableValueChangeListener(EditableValueChangeListener listener) {
         mListener = listener;
-        CScrollLayer layer = CScrollLayer.create(new Director(getContext()));
-        layer.setOnScrollerListener(new CLayer.OnScrollerListener() {
-            @Override
-            public void onScroll(CLayer layer, int scrollX, int scrollY, int width, int height) {
-
-            }
-        });
     }
 
     public interface EditableValueChangeListener {

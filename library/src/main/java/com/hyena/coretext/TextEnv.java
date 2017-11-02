@@ -9,10 +9,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.SparseArray;
+import android.widget.Scroller;
 
 import com.hyena.coretext.builder.IBlockMaker;
 import com.hyena.coretext.event.CYEventDispatcher;
 import com.hyena.coretext.utils.EditableValue;
+import com.hyena.framework.animation.CLayer;
+import com.hyena.framework.animation.CScrollLayer;
+import com.hyena.framework.animation.Director;
 
 /**
  * Created by yangzc on 17/1/20.
@@ -184,12 +188,18 @@ public class TextEnv {
             setEditableValue(tabId, editableValue);
         }
         editableValue.setValue(value);
+        if (mListener != null) {
+            mListener.setEditableValue(tabId, value);
+        }
     }
 
     public TextEnv setEditableValue(int tabId, EditableValue value) {
         if (mEditableValues == null)
             return this;
         mEditableValues.put(tabId, value);
+        if (mListener != null) {
+            mListener.setEditableValue(tabId, value);
+        }
         return this;
     }
 
@@ -221,4 +231,21 @@ public class TextEnv {
     }
 
     public void build() {}
+
+    private EditableValueChangeListener mListener = null;
+    public void setEditableValueChangeListener(EditableValueChangeListener listener) {
+        mListener = listener;
+        CScrollLayer layer = CScrollLayer.create(new Director(getContext()));
+        layer.setOnScrollerListener(new CLayer.OnScrollerListener() {
+            @Override
+            public void onScroll(CLayer layer, int scrollX, int scrollY, int width, int height) {
+
+            }
+        });
+    }
+
+    public interface EditableValueChangeListener {
+        void setEditableValue(int id, String value);
+        void setEditableValue(int id, EditableValue value);
+    }
 }

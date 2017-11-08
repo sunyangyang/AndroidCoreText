@@ -1,4 +1,4 @@
 #!/bin/sh
 ./gradlew library:assembleRelease
-rm /Users/sunyangyang/AndroidKnowboxBase/coretext/coretext.aar
-cp ~/AndroidCoreText/library/build/outputs/aar/library-release.aar /Users/sunyangyang/AndroidKnowboxBase/coretext/coretext.aar
+rm /Users/yangzc/devsoft/projects/android/AndroidKnowboxBase/coretext/coretext.aar
+cp ~/devsoft/projects/android_st/AndroidCoreText/library/build/outputs/aar/library-release.aar /Users/yangzc/devsoft/projects/android/AndroidKnowboxBase/coretext/coretext.aar

@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.hyena.coretext.TextEnv;
 import com.hyena.coretext.utils.PaintManager;
@@ -20,6 +21,7 @@ import java.util.regex.Pattern;
 public class CYTextBlock extends CYBlock {
 
     protected Paint paint;
+    protected Paint pinYinPaint;
     private int width, height;
     protected Paint.FontMetrics fontMetrics;
     protected Word word = null;
@@ -35,6 +37,8 @@ public class CYTextBlock extends CYBlock {
         //初始化画笔
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.set(textEnv.getPaint());
+        pinYinPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        pinYinPaint.set(textEnv.getPaint());
         this.fontSize = paint.getTextSize();
         //解析成单词
         List<Word> words = parseWords(content);
@@ -94,6 +98,7 @@ public class CYTextBlock extends CYBlock {
         if (style != null) {
             paint.setColor(style.getTextColor());
             setTextSize(style.getTextSize());
+            pinYinPaint.setColor(style.getTextColor());
         }
         this.fontMetrics = paint.getFontMetrics();
         updateSize();
@@ -103,12 +108,18 @@ public class CYTextBlock extends CYBlock {
         if (paint != null && color > 0) {
             paint.setColor(color);
         }
+        if (pinYinPaint != null && color > 0) {
+            pinYinPaint.setColor(color);
+        }
         return this;
     }
 
     public CYTextBlock setTypeFace(Typeface typeface){
         if (paint != null && typeface != null) {
             paint.setTypeface(typeface);
+        }
+        if (pinYinPaint != null && typeface != null) {
+            pinYinPaint.setTypeface(typeface);
         }
         return this;
     }
@@ -122,9 +133,10 @@ public class CYTextBlock extends CYBlock {
     protected void updateSize() {
         float textWidth = getTextWidth(paint, word.word);
         paint.setTextSize(fontSize);
+        pinYinPaint.setTextSize(fontSize);
         float textHeight = getTextHeight(paint);
         if (!TextUtils.isEmpty(word.pinyin)) {
-            paint.setTextSize(fontSize * 0.6f);
+            pinYinPaint.setTextSize(fontSize * 0.6f);
             float pinyinWidth = getTextWidth(paint, word.pinyin);
             float pinyinHeight = getTextHeight(paint);
             if (pinyinWidth > textWidth) {
@@ -140,6 +152,9 @@ public class CYTextBlock extends CYBlock {
         if (paint != null) {
             paint.setTextSize(fontSize);
             this.fontSize = paint.getTextSize();
+        }
+        if (pinYinPaint != null) {
+            pinYinPaint.setTextSize(fontSize);
         }
         return this;
     }
@@ -210,7 +225,7 @@ public class CYTextBlock extends CYBlock {
             //绘制单词
             drawText(canvas, word.word, x, y, paint);
             //绘制拼音
-            drawPinyin(canvas, word.pinyin, x, y - getTextHeight(paint), paint);
+            drawPinyin(canvas, word.pinyin, x, y - getTextHeight(paint), pinYinPaint);
             //绘制下横线
             drawUnderLine(canvas, rect);
         }

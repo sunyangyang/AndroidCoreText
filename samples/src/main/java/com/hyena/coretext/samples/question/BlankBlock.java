@@ -79,7 +79,9 @@ public class BlankBlock extends CYEditBlock {
             this.mHeight = textHeight;
         } else {
             if ("letter".equals(size)) {
-                this.mWidth = Const.DP_1 * 30;
+                this.mWidth = Math.max(Const.DP_1 * 30, (int) PaintManager.getInstance().getWidth(getTextEnv()
+                        .getPaint(), text));
+                this.mWidth += DP_2 * 5;
                 this.mHeight = Const.DP_1 * 50;
             } else if ("line".equals(size)) {
                 this.mWidth = Const.DP_1 * 265;

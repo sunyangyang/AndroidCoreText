@@ -136,6 +136,7 @@ public class CYTextBlock extends CYBlock {
         pinYinPaint.setTextSize(fontSize);
         float textHeight = getTextHeight(paint);
         if (!TextUtils.isEmpty(word.pinyin)) {
+            paint.setTextSize(fontSize * 0.6f);
             pinYinPaint.setTextSize(fontSize * 0.6f);
             float pinyinWidth = getTextWidth(paint, word.pinyin);
             float pinyinHeight = getTextHeight(paint);

@@ -6,4 +6,4 @@ build/
 .gradle/
 .DS_Store
 local.properties
-shells/cpaar.sh
+shells/sunCpaar.sh

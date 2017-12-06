@@ -25,7 +25,7 @@ ext {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.github.yangzc:AndroidSupport:1.0.2'
+    compile 'com.github.yangzc:AndroidSupport:1.2.3'
     compile project(':jlatexmath')
 }
 

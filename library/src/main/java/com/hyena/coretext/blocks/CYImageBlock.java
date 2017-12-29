@@ -12,26 +12,22 @@ import android.view.View;
 
 import com.hyena.coretext.TextEnv;
 import com.hyena.coretext.utils.Const;
-import com.hyena.framework.clientlog.LogUtil;
+import com.hyena.framework.imageloader.base.IDisplayer;
+import com.hyena.framework.imageloader.base.ImageLoaderListener;
+import com.hyena.framework.imageloader.base.LoadedFrom;
 import com.hyena.framework.utils.ImageFetcher;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ViewScaleType;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 /**
  * Created by yangzc on 16/4/8.
  */
-public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingListener {
+public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoaderListener {
 
     private String mUrl = "";
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    private DisplayImageOptions options;
     protected Drawable drawable = null;
-    protected ImageAware mImageAware;
+    protected IDisplayer mDisplayer;
+    protected int mDefaultResId = 0;
 
     public CYImageBlock(TextEnv textEnv, String content) {
         super(textEnv, content);
@@ -45,16 +41,10 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
         mPaint.setStyle(Paint.Style.STROKE);
     }
 
-    public void loadImage(String url, int width, int height,
-                          int failResId, int emptyResId, int loadingResId) {
-        DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
-        builder.cacheInMemory(true);
-        builder.cacheOnDisk(true);
-        builder.showImageOnFail(failResId);
-        builder.showImageForEmptyUri(emptyResId);
-        builder.showImageOnLoading(loadingResId);
-        mImageAware = new ThisImageAware(width, height);
-        ImageLoader.getInstance().displayImage(url, mImageAware, options = builder.build(), this);
+    public void loadImage(String url, int width, int height, int defaultResId) {
+        this.mDefaultResId = defaultResId;
+        mDisplayer = new ThisImageDisplayer(width, height);
+        ImageFetcher.getImageFetcher().loadImage(url, mDisplayer, defaultResId, this);
     }
 
     @Override
@@ -95,9 +85,9 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
 
     private boolean isSuccess = false;
     private void tryLoadFromCache() {
-        if (isSuccess || mImageAware == null)
+        if (isSuccess || mDisplayer == null)
             return;
-        String key = mUrl + "_" + mImageAware.getWidth() + "x" + mImageAware.getHeight();
+        String key = mUrl + "_" + mDisplayer.getWidth() + "x" + mDisplayer.getHeight();
         Bitmap bitmap = com.nostra13.universalimageloader.core.ImageLoader.getInstance().getMemoryCache().get(key);
         if (bitmap != null && !bitmap.isRecycled()) {
             isSuccess = true;
@@ -109,10 +99,10 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
     }
 
     public void retry() {
-        if (TextUtils.isEmpty(mUrl) || drawable != null || mImageAware == null) {
+        if (TextUtils.isEmpty(mUrl) || drawable != null || mDisplayer == null) {
             return;
         }
-        ImageLoader.getInstance().displayImage(mUrl, mImageAware, options, this);
+        ImageFetcher.getImageFetcher().loadImage(mUrl, mDisplayer, mDefaultResId, this);
     }
 
     @Override
@@ -127,10 +117,21 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
     }
 
     private Rect mImageRect = new Rect();
+
+    @Override
+    public void onProgressUpdate(String url, View view, int current, int total) {
+
+    }
+
+    @Override
+    public void onLoadComplete(String imageUrl, Bitmap bitmap, Object tag) {
+
+    }
+
     /* ImageAware实现 */
-    private class ThisImageAware implements ImageAware {
+    private class ThisImageDisplayer implements IDisplayer {
         private int width, height;
-        public ThisImageAware(int width, int height) {
+        public ThisImageDisplayer(int width, int height) {
             this.width = width;
             this.height = height;
         }
@@ -156,11 +157,6 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
         }
 
         @Override
-        public ViewScaleType getScaleType() {
-            return ViewScaleType.FIT_INSIDE;
-        }
-
-        @Override
         public View getWrappedView() {
             return null;
         }
@@ -175,49 +171,33 @@ public class CYImageBlock extends CYPlaceHolderBlock implements ImageLoadingList
             return TextUtils.isEmpty(mUrl)?super.hashCode():mUrl.hashCode();
         }
 
+        @Override
+        public Object getTag() {
+            return null;
+        }
+
         private void setImageDrawableInfo(Drawable drawable) {
             CYImageBlock.this.drawable = drawable;
             postInvalidate();
         }
 
         @Override
-        public boolean setImageDrawable(Drawable drawable) {
+        public void setImageDrawable(Drawable drawable) {
             if (drawable != null)
                 setImageDrawableInfo(drawable);
-            return true;
         }
 
         @Override
-        public boolean setImageBitmap(Bitmap bitmap) {
+        public void setImageBitmap(Bitmap bitmap, LoadedFrom from) {
             setImageDrawableInfo(new BitmapDrawable(getTextEnv().getContext()
                     .getResources(), bitmap));
-            return true;
         }
+
     };
 
     public boolean isSuccess() {
         return isSuccess;
     }
 
-    /* 回调部分 */
-    @Override
-    public void onLoadingStarted(String s, View view) {
-        LogUtil.v("yangzc", "onLoadingStarted: " + s);
-    }
-
-    @Override
-    public void onLoadingFailed(String s, View view, FailReason failReason) {
-        LogUtil.v("yangzc", "onLoadingFailed: " + s);
-    }
-
-    @Override
-    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-        LogUtil.v("yangzc", "onLoadingComplete: " + s);
-    }
-
-    @Override
-    public void onLoadingCancelled(String s, View view) {
-        LogUtil.v("yangzc", "onLoadingCancelled: " + s);
-    }
 
 }

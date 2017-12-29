@@ -42,7 +42,7 @@ public class ImageBlock extends CYImageBlock {
                 setWidth(Const.DP_1 * 60);
                 setHeight(Const.DP_1 * 60);
             }
-            loadImage(url, getWidth(), getHeight(), 0, 0, 0);
+            loadImage(url, getWidth(), getHeight(), 0);
         } catch (JSONException e) {
             e.printStackTrace();
         }

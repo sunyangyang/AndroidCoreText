@@ -4,6 +4,7 @@
 
 package com.hyena.coretext.samples.question;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -43,6 +44,7 @@ public class AudioBlock extends CYPlaceHolderBlock {
         init(content);
     }
 
+    @SuppressLint("WrongConstant")
     private void init(String content) {
         mPlayBusService = (PlayerBusService) getTextEnv().getContext()
                 .getSystemService(PlayerBusService.BUS_SERVICE_NAME);
@@ -130,7 +132,7 @@ public class AudioBlock extends CYPlaceHolderBlock {
         super.stop();
         if (mPlayBusService != null) {
             mPlayBusService.getPlayerBusServiceObserver()
-                    .removemPlayStatusChangeListener(mPlayStatusChangeListener);
+                    .removePlayStatusChangeListener(mPlayStatusChangeListener);
         }
     }
 

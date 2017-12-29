@@ -29,7 +29,6 @@ public class App extends BaseApp {
         LogUtil.setLevel(Logger.DO_NOT_WRITE_LOG);
         //初始化底层服务配置
         FrameworkConfig.init(this).setAppRootDir(Environment.getExternalStorageDirectory())
-                .setGetEncodeKey("acd2469c596a553d44b50c26b4094f46")
                 .setDebug(true);
         //注册网络服务
         NetworkProvider.getNetworkProvider().registNetworkSensor(new DefaultNetworkSensor());

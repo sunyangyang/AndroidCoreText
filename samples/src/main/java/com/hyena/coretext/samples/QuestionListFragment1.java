@@ -50,7 +50,7 @@ public class QuestionListFragment1 extends Fragment {
 
         try {
             List<Item> items = new ArrayList<Item>();
-            byte buf[] = FileUtils.getBytes(getResources().getAssets().open("questions.json"));
+            byte buf[] = FileUtils.getBytes(getResources().getAssets().open("question_1.json"));
             JSONObject jsonObject = new JSONObject(new String(buf));
             JSONArray jsonArray = jsonObject.optJSONArray("RECORDS");
             if (jsonArray != null) {
@@ -93,7 +93,7 @@ public class QuestionListFragment1 extends Fragment {
             Item item = getItem(position);
 //            viewHolder.mQtvQuestion.getTextEnv().setFontScale(0.1f);
             viewHolder.mIndex.setText(position + "  ");
-            viewHolder.mQtvQuestion.getBuilder(parent, position + "", item.question)
+            viewHolder.mQtvQuestion.getBuilder(item.question)
                     .setTag(position + "")
                     .setEditableValue(1, new EditableValue(Color.RED, "position" + position))
                     .setEditable(false).build();
@@ -114,7 +114,7 @@ public class QuestionListFragment1 extends Fragment {
         int type;
 
         public Item(JSONObject json) {
-            this.question = json.optString("question");
+            this.question = json.optString("Question");
             this.answer = json.optString("RightAnswer");
             this.type = json.optInt("QuestionType");
         }

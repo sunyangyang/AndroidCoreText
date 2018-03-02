@@ -226,6 +226,9 @@ public class CYLatexBlock extends CYPlaceHolderBlock implements ICYEditableGroup
 
     @Override
     public List<ICYEditable> findAllEditable() {
+        if (mTexIcon == null) {
+            return null;
+        }
         List<ICYEditable> editable = new ArrayList<ICYEditable>();
         findAllEditable(mTexIcon.getBox(), editable);
         return editable;

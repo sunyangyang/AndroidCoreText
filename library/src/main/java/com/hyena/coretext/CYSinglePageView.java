@@ -73,6 +73,11 @@ public class CYSinglePageView extends CYPageView implements IRender {
         return mBuilder;
     }
 
+
+    public Builder getBuilder() {
+        return mBuilder;
+    }
+
     @Override
     public ICYEditable findEditableByTabId(int tabId) {
         List<ICYEditable> editableList = getEditableList();
@@ -265,6 +270,7 @@ public class CYSinglePageView extends CYPageView implements IRender {
             if (mPageBlock == null) {
                 mBlocks = CYBlockProvider.getBlockProvider().build(this, mText);
                 if (mBlocks != null && !mBlocks.isEmpty()) {
+                    updateBlock();
                     CYHorizontalLayout layout = new CYHorizontalLayout(this, mBlocks);
                     List<CYPageBlock> pages = layout.parse();
                     if (pages != null && pages.size() > 0) {
@@ -276,6 +282,27 @@ public class CYSinglePageView extends CYPageView implements IRender {
             }
             if (render != null) {
                 render.setPageBlock(mPageBlock);
+            }
+        }
+
+        private void updateBlock() {
+            if (mBlocks.size() == 1) {
+                return;
+            }
+            for (int i = 0; i < mBlocks.size(); i++) {
+                CYBlock curBlock = mBlocks.get(i);
+                if (i == 0) {
+                    CYBlock nextBlock = mBlocks.get(i + 1);
+                    curBlock.setNextBlock(nextBlock);
+                } else if (i == mBlocks.size() - 1) {
+                    CYBlock prevBlock = mBlocks.get(i - 1);
+                    curBlock.setPrevBlock(prevBlock);
+                } else {
+                    CYBlock nextBlock = mBlocks.get(i + 1);
+                    curBlock.setNextBlock(nextBlock);
+                    CYBlock prevBlock = mBlocks.get(i - 1);
+                    curBlock.setPrevBlock(prevBlock);
+                }
             }
         }
 

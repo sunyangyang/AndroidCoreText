@@ -43,6 +43,8 @@ public abstract class CYBlock<T extends CYBlock> implements ICYFocusable, Clonea
     private boolean mIsInMonopolyRow = true;
     private boolean mFocusable = false;
     private CYStyle mParagraphStyle;
+    private CYBlock mPrevBlock;
+    private CYBlock mNextBlock;
 
     private static int DP_1 = Const.DP_1;
 
@@ -436,6 +438,22 @@ public abstract class CYBlock<T extends CYBlock> implements ICYFocusable, Clonea
 
     public int getTextWidth(Paint paint, String text) {
         return (int) PaintManager.getInstance().getWidth(paint, text);
+    }
+
+    public CYBlock getPrevBlock() {
+        return mPrevBlock;
+    }
+
+    public void setPrevBlock(CYBlock mPrevBlock) {
+        this.mPrevBlock = mPrevBlock;
+    }
+
+    public CYBlock getNextBlock() {
+        return mNextBlock;
+    }
+
+    public void setNextBlock(CYBlock mNextBlock) {
+        this.mNextBlock = mNextBlock;
     }
 
     public boolean isValid() {

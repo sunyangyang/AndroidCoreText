@@ -286,4 +286,9 @@ public class CYTextBlock extends CYBlock {
             this.pinyin = pinyin;
         }
     }
+
+    public Word getWord() {
+        return word;
+    }
+
 }

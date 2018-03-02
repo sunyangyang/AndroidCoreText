@@ -1,0 +1,130 @@
+{
+"RECORDS":[
+{
+"QuestionID":888082,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#听录音，回答以下问题。#{\"type\":\"para_end\"}##{\"type\":\"para_begin\",\"style\":\"english_audio\"}##{\"type\":\"audio\",\"src\":\"https://tikuqiniu.knowbox.cn/english_pkg_media/SL1BU2L1-7.mp3\"}##{\"type\":\"para_end\"}#",
+"RightAnswer":"#{ \"type\" : \"answer\", \"blank_id\" : 1 , \"choice\" : \"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888083,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#What's her name?#{\"type\":\"para_end\"}#",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888084,
+"Question":"Her name is Lily.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":[\"D\",\"B\",\"C\"]}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888085,
+"Question":"Her name is Joy.",
+"RightAnswer":"#{ \"type\" : \"answer\", \"blank_id\" : 1 , \"choice\" : \"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888088,
+"Question":"Her name is Kitty.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888089,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#Is the room nice and clean?#{\"type\":\"para_end\"}#",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888090,
+"Question":"Yes, it is.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888091,
+"Question":"No, it isn't.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888092,
+"Question":"Yes, please.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888093,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#How many chairs are there in her room?#{\"type\":\"para_end\"}#",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888094,
+"Question":"One.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888095,
+"Question":"Two.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888096,
+"Question":"Three.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888097,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#Does she have a desk in her room?#{\"type\":\"para_end\"}#",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888098,
+"Question":"Yes, she does.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888099,
+"Question":"No, she doesn't.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888100,
+"Question":"I don't know.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888101,
+"Question":"#{\"type\":\"para_begin\",\"style\":\"english_guide\"}#Where is her bag?#{\"type\":\"para_end\"}#",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888102,
+"Question":"It's on the desk.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888103,
+"Question":"It's behind the door.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+},
+{
+"QuestionID":888104,
+"Question":"It's under the chair.",
+"RightAnswer":"#{\"type\":\"answer\",\"blank_id\":1,\"choice\":\"A\"}#",
+"QuestionType":"Choice"
+}
+]
+}

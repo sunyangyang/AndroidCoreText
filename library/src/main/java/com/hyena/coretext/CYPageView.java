@@ -247,6 +247,18 @@ public abstract class CYPageView extends View implements CYLayoutEventListener {
         }
     }
 
+    public void resume() {
+        if (mPageBlock != null) {
+            mPageBlock.resume();
+        }
+    }
+
+    public void pause() {
+        if (mPageBlock != null) {
+            mPageBlock.pause();
+        }
+    }
+
 //    public TextEnv buildDefaultTextEnv(Context context) {
 //        int width = getResources().getDisplayMetrics().widthPixels;
 //        return new TextEnv(context)

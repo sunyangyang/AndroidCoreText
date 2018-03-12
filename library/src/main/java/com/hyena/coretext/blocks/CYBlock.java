@@ -432,6 +432,26 @@ public abstract class CYBlock<T extends CYBlock> implements ICYFocusable, Clonea
         }
     }
 
+    public void resume() {
+        List<T> children = getChildren();
+        if (children != null && !children.isEmpty()) {
+            for (int i = 0; i < children.size(); i++) {
+                T block = children.get(i);
+                block.resume();
+            }
+        }
+    }
+
+    public void pause() {
+        List<T> children = getChildren();
+        if (children != null && !children.isEmpty()) {
+            for (int i = 0; i < children.size(); i++) {
+                T block = children.get(i);
+                block.pause();
+            }
+        }
+    }
+
     public int getTextHeight(Paint paint) {
         return PaintManager.getInstance().getHeight(paint);
     }

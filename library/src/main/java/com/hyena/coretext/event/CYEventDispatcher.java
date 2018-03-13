@@ -57,6 +57,15 @@ public class CYEventDispatcher {
         }
     }
 
+    public void postPageBuild() {
+        if (mLayoutListeners == null || mLayoutListeners.isEmpty())
+            return;
+        for (int i = 0; i < mLayoutListeners.size(); i++) {
+            CYLayoutEventListener listener = mLayoutListeners.get(i);
+            listener.onPageBuild();
+        }
+    }
+
     public void clear() {
         if (mLayoutListeners != null) {
             mLayoutListeners.clear();

@@ -81,6 +81,11 @@ public class TableCell {
                     tableBlock.postInvalidateThis();
                 }
             }
+
+            @Override
+            public void onPageBuild() {
+
+            }
         });
         List<CYBlock> blocks = CYBlockProvider.getBlockProvider().build(textEnv, text);
         if (blocks != null && !blocks.isEmpty()) {

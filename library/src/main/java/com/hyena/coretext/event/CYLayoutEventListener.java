@@ -10,4 +10,6 @@ public interface CYLayoutEventListener {
     void doLayout(boolean force);
 
     void onInvalidate(Rect rect);
+
+    void onPageBuild();
 }

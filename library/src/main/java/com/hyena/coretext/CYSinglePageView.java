@@ -171,6 +171,11 @@ public class CYSinglePageView extends CYPageView implements IRender {
         });
     }
 
+    @Override
+    public void onPageBuild() {
+
+    }
+
     public void setCachePage(View attachedView, String tag, Builder builder) {
         if (attachedView != null) {
             int id = getId(attachedView.getContext(), "id_attached");
@@ -282,6 +287,9 @@ public class CYSinglePageView extends CYPageView implements IRender {
             }
             if (render != null) {
                 render.setPageBlock(mPageBlock);
+            }
+            if (getEventDispatcher() != null) {
+                getEventDispatcher().postPageBuild();
             }
         }
 

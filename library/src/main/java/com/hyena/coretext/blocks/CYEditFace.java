@@ -29,10 +29,10 @@ public class CYEditFace implements IEditFace{
     //刷新句柄
     private Handler mHandler;
     //是否显示输入提示（闪烁输入提示）
-    private boolean mInputFlash = false;
+    protected boolean mInputFlash = false;
 
     protected TextEnv mTextEnv;
-    private ICYEditable mEditable;
+    protected ICYEditable mEditable;
 
     protected Paint mTextPaint;
     protected Paint mFlashPaint;

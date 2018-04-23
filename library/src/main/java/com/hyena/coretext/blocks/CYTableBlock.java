@@ -24,10 +24,10 @@ public class CYTableBlock extends CYPlaceHolderBlock implements ICYEditableGroup
 
     public CYTableBlock(TextEnv textEnv, String content) {
         super(textEnv, content);
-        init();
+        init(content);
     }
 
-    private void init() {
+    protected void init(String content) {
         mBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBorderPaint.setColor(Color.BLACK);
         mBorderPaint.setStrokeWidth(Const.DP_1);

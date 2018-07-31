@@ -5,6 +5,7 @@
 package com.hyena.coretext;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -46,7 +47,7 @@ public class CYSinglePageView extends CYPageView implements IRender {
      * 获取构建器
      */
     public Builder getBuilder(View attachView, String tag, String text) {
-        if (attachView == null)
+        if (attachView == null || TextUtils.isEmpty(tag))
             return getBuilder(text);
 
         Builder builder = getCachedPage(attachView, tag);
